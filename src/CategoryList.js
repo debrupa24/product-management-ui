@@ -12,7 +12,7 @@ class CategoryList extends React.Component {
 
         this.state = {
             categories: [], isLoading: true, showProduct: false, catagoryName: "",
-            products:{},selectedId:"32"
+            products: {}, selectedId: "32"
         };
         this.remove = this.remove.bind(this);
     }
@@ -35,12 +35,12 @@ class CategoryList extends React.Component {
         }).then(() => {
             let updatedCategories = [...this.state.categories].filter(i => i.categoryId !== id);
             this.setState({ categories: updatedCategories });
-            
+
         });
     }
 
     render() {
-        const { categories, isLoading, showProduct, catagoryName ,products,selectedId} = this.state;
+        const { categories, isLoading, showProduct, catagoryName, products, selectedId } = this.state;
 
         if (isLoading) {
             return <p>Loading...</p>;
@@ -48,23 +48,34 @@ class CategoryList extends React.Component {
 
         if (showProduct) {
 
-            return <ProductList products={products} catagoryName={catagoryName} selectedId={selectedId}/>;
+            return <ProductList products={products} catagoryName={catagoryName} selectedId={selectedId} />;
 
         }
 
         const categoryList = categories.map(category => {
+            if (!category.updateHistory) {
+                category.updateHistory = {};
+                category.updateHistory.updatedBy = "testuser";
+                category.updateHistory.updateComment = "";
+            }
+            if (!category.updatedAt) {
+                category.updatedAt = new Date();
+            }
             return <tr key={category.categoryId}>
                 <td>{category.catagoryName}</td>
                 <td>{category.catagoryDescription}</td>
                 <td>{category.products.length}
-                    <Button size="sm" color="info" onClick={() => this.setState({ showProduct: true, products: category.products,catagoryName:category.catagoryName,selectedId:category.categoryId })}>
+                    <Button size="sm" color="info" onClick={() => this.setState({ showProduct: true, products: category.products, catagoryName: category.catagoryName, selectedId: category.categoryId })}>
                         Get Products
                     </Button>
                 </td>
                 <td>{category.createdBy}</td>
+                <td>{category.updatedBy || ""}</td>
                 <td>
                     <ButtonGroup>
-                        <Button size="sm" color="primary" tag={Link} to={"/category/updateCategory/" + category.categoryId}>Edit</Button>
+                        <Button size="sm" color="warning" tag={Link} to={{
+                            pathname: `/updatecategory/${category.categoryId}/${JSON.stringify(category)}`
+                        }}>Edit</Button>
                         <Button size="sm" color="danger" onClick={() => this.remove(category.categoryId)}>Delete</Button>
                     </ButtonGroup>
                 </td>
@@ -77,11 +88,11 @@ class CategoryList extends React.Component {
                 <Container fluid>
                     <div className="float-right">
                         <Button color="success" tag={Link} to={{
-                pathname: `/addcategory/${this.state.selectedId}`
-              }} >Add New Category</Button>
+                            pathname: `/addcategory/${this.state.selectedId}`
+                        }} >Add New Category</Button>
                     </div>
                     <h3>Category Details</h3>
-                    <div className="table-responsive">
+                    <div className="table-responsive generaPadding">
                         <Table className="table table-hover">
                             <thead className="thead-light">
                                 <tr>
@@ -89,6 +100,7 @@ class CategoryList extends React.Component {
                                     <th>Description</th>
                                     <th>Number of Products</th>
                                     <th>Created By</th>
+                                    <th>Updated By</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>

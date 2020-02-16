@@ -11,3 +11,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.generaPadding{
+  padding:20px;
+}
+
+.formPadding{
+  padding:0 50px 0 50px;
+}
+
