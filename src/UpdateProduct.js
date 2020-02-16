@@ -99,7 +99,7 @@ class UpdateProduct extends React.Component {
         return <div>
             <AppNavbar />
             <Container>
-                {title}
+            <h3  className="formPadding">{title}</h3>
                 <Form onSubmit={this.handleSubmit} className="formPadding">
                     <FormGroup>
                         <Label for="productName">Product Name</Label>

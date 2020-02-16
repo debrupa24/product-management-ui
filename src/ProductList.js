@@ -69,7 +69,7 @@ class ProductList extends React.Component {
 
             <Button color="link"><Link to="/">Back</Link></Button>
           </div>
-          <h3>Product Details  for {catagoryName}</h3>
+          <h3  className="generaPadding">Product Details  for {catagoryName}</h3>
           <div className="table-responsive generaPadding">
             <Table className="table table-hover">
               <thead className="thead-light">

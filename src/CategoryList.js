@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Button, ButtonGroup, Container, Table } from 'reactstrap';
 import AppNavbar from './AppNavbar';
 import { Link } from 'react-router-dom';
 import ProductList from './ProductList';
-import { Route } from 'react-router-dom';
 
 class CategoryList extends React.Component {
 
@@ -70,7 +69,7 @@ class CategoryList extends React.Component {
                     </Button>
                 </td>
                 <td>{category.createdBy}</td>
-                <td>{category.updatedBy || ""}</td>
+                <td>{category.updateHistory.updatedBy || ""}</td>
                 <td>
                     <ButtonGroup>
                         <Button size="sm" color="warning" tag={Link} to={{
@@ -86,12 +85,12 @@ class CategoryList extends React.Component {
             <div>
                 <AppNavbar />
                 <Container fluid>
-                    <div className="float-right">
+                    <div className="float-right generaPadding">
                         <Button color="success" tag={Link} to={{
                             pathname: `/addcategory/${this.state.selectedId}`
                         }} >Add New Category</Button>
                     </div>
-                    <h3>Category Details</h3>
+                    <h3 className="generaPadding">Category Details</h3>
                     <div className="table-responsive generaPadding">
                         <Table className="table table-hover">
                             <thead className="thead-light">

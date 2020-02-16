@@ -71,8 +71,8 @@ class AddCategory extends React.Component {
     return <div>
       <AppNavbar />
       <Container>
-        {title}
-        <Form onSubmit={this.handleSubmit}>
+      <h3  className="formPadding">{title}</h3>
+        <Form onSubmit={this.handleSubmit}  className="formPadding">
           <FormGroup>
             <Label for="catagoryName">Category Name</Label>
             <Input type="text" name="catagoryName" id="catagoryName" value={item.catagoryName || ''}
