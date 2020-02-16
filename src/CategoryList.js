@@ -64,9 +64,9 @@ class CategoryList extends React.Component {
             return <tr key={category.categoryId}>
                 <td>{category.catagoryName}</td>
                 <td>{category.catagoryDescription}</td>
-                <td>{category.products.length}
+                <td>
                     <Button size="sm" color="info" onClick={() => this.setState({ showProduct: true, products: category.products, catagoryName: category.catagoryName, selectedId: category.categoryId })}>
-                        Get Products
+                        <span className="badge badge-light">{category.products.length}</span> Get Products >>
                     </Button>
                 </td>
                 <td>{category.createdBy}</td>
