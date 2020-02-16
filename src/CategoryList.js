@@ -12,7 +12,7 @@ class CategoryList extends React.Component {
 
         this.state = {
             categories: [], isLoading: true, showProduct: false, catagoryName: "",
-            products:{},selectedId:""
+            products:{},selectedId:"32"
         };
         this.remove = this.remove.bind(this);
     }
@@ -76,8 +76,9 @@ class CategoryList extends React.Component {
                 <AppNavbar />
                 <Container fluid>
                     <div className="float-right">
-                        <Button color="success" tag={Link} to="/addcategory" selectedid='32'
-                        onClick={() => this.setState({selectedId:32 })}>Add New Category</Button>
+                        <Button color="success" tag={Link} to={{
+                pathname: `/addcategory/${this.state.selectedId}`
+              }} >Add New Category</Button>
                     </div>
                     <h3>Category Details</h3>
                     <div className="table-responsive">

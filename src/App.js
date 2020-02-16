@@ -18,7 +18,7 @@ class App extends Component {
       <Switch>
         <Route path='/' exact={true} component={Home}/>
         <Route path='/categories' exact={true} component={CategoryList}/>
-        <Route path='/addcategory' exact={true} component={AddCategory}/>
+        <Route path='/addcategory/:selectedId' exact={true} component={AddCategory}/>
       </Switch>
     </Router>
     );

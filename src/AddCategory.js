@@ -4,7 +4,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { Button, ButtonGroup, Container, Form, FormGroup, Input, Label } from 'reactstrap';
 import AppNavbar from './AppNavbar';
 
-class AddCategory extends Component {
+class AddCategory extends React.Component {
     emptyItem = {
         productName: '',
         productDesc: '',
@@ -18,7 +18,7 @@ class AddCategory extends Component {
         super(props);
         this.state = {
           item: this.emptyItem,
-          selectedid:this.props.selectedid
+          selectedId:props.match.params.selectedId
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -55,8 +55,8 @@ class AddCategory extends Component {
       }
     
       render() {
-        const {item,selectedid} = this.state;
-        const title = <h2>Add Product {selectedid}</h2>;
+        const {item,selectedId} = this.state;
+        const title = <h2>Add Product {selectedId}</h2>;
     
         return <div>
           <AppNavbar/>
